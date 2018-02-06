@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 120760889665376862}
   - component: {fileID: 114890729869680280}
   m_Layer: 0
-  m_Name: FractalTreeBranch
+  m_Name: FractalTreeBranchPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 120760889665376862}
+  prototype: {fileID: 1928199898880298}
 --- !u!120 &120760889665376862
 LineRenderer:
   m_ObjectHideFlags: 1
