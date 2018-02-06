@@ -20,6 +20,8 @@ namespace CodingChallenge.FractalTree
         
         [SerializeField]
         private float updateSpeed;
+        
+        private bool play;
 
         public GameObject BranchPrefab
         {
@@ -65,8 +67,18 @@ namespace CodingChallenge.FractalTree
             }
         }
 
+        public void StartAnim()
+        {
+            play = !play;
+        }
+        
         void Update()
         {
+            if (!play)
+            {
+                return;
+            }
+            
             var slider = FindObjectOfType<Slider>();
             slider.value += updateSpeed * Time.deltaTime;
             RedrawChildren();
