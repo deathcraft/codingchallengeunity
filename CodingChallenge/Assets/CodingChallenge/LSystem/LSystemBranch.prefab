@@ -20,10 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4185991801468080}
   - component: {fileID: 120760889665376862}
-  - component: {fileID: 114890729869680280}
-  - component: {fileID: 114235077062137052}
   m_Layer: 0
-  m_Name: FractalTreeBranchPrefab
+  m_Name: LSystemBranch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,30 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114235077062137052
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1928199898880298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c96f58e79e884cc4804117b97826faa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 120760889665376862}
---- !u!114 &114890729869680280
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1928199898880298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84700a074d954180acf81a36da0d7853, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  abstractLine: {fileID: 114235077062137052}
 --- !u!120 &120760889665376862
 LineRenderer:
   m_ObjectHideFlags: 1

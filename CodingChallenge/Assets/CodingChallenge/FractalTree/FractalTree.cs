@@ -41,9 +41,11 @@ namespace CodingChallenge.FractalTree
 
         private List<FractalTreeBranch> tree = new List<FractalTreeBranch>();
         
+        private Vector3 initialEnd;
+
         void Awake()
         {
-            Vector3 initialEnd = transform.position + new Vector3(0, initialBranchLength, 0);
+            initialEnd = transform.position + new Vector3(0, initialBranchLength, 0);
             var branch = InstantiateBranch(transform.position, initialEnd);
             tree.Add(branch);
             
@@ -63,10 +65,10 @@ namespace CodingChallenge.FractalTree
             angle = FindObjectOfType<Slider>().value;
             if (tree[0] != null)
             {
-                tree[0].RedrawChildren();
+                tree[0].DrawLine(transform.position, initialEnd);
             }
         }
-
+      
         public void StartAnim()
         {
             play = !play;
@@ -86,6 +88,7 @@ namespace CodingChallenge.FractalTree
             if (slider.value >= slider.maxValue)
             {
                 slider.value = slider.minValue;
+                FindObjectOfType<GifRecord>().StopRecord();
             }
         }
 
