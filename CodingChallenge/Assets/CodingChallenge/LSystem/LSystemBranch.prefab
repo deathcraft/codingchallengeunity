@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4185991801468080}
   - component: {fileID: 120760889665376862}
+  - component: {fileID: 114137356914339598}
+  - component: {fileID: 114508040784315424}
   m_Layer: 0
   m_Name: LSystemBranch
   m_TagString: Untagged
@@ -40,6 +42,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114137356914339598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1928199898880298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c96f58e79e884cc4804117b97826faa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 120760889665376862}
+--- !u!114 &114508040784315424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1928199898880298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2506b19f4794cb480ae1f116392747f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  line: {fileID: 114137356914339598}
 --- !u!120 &120760889665376862
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -55,7 +81,7 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 5215ccb01cecd4344a018971da369811, type: 2}
+  - {fileID: 2100000, guid: 4b0029274e6761648b740d1ef772d6c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

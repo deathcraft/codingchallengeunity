@@ -16,6 +16,10 @@ namespace CodingChallenge
                 started = true;
                 Debug.Log("Start record");
             }
+            else
+            {
+                StopRecord();
+            }
         }
 
         public void StopRecord()
@@ -25,6 +29,7 @@ namespace CodingChallenge
                 FindObjectOfType<Recorder>().Save();
                 saved = true;
                 Debug.Log("End record");
+                started = false;
             }
         }
     }
