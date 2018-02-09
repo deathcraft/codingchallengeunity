@@ -1,0 +1,11 @@
+*.csproj
+*.pidb
+*.unityproj
+*.sln
+*.suo
+*.userprefs
+*.apk
+project/Library/
+project/Temp/
+obj/
+.vs/
