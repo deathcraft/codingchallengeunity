@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.Experimental.UIElements;
 
 public class ExtendedFlycam : MonoBehaviour
 {

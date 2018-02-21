@@ -1,5 +1,4 @@
-﻿using System.Security.Permissions;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CodingChallenge.SolarSystem
 {
@@ -7,13 +6,13 @@ namespace CodingChallenge.SolarSystem
     {
         [SerializeField]
         private Planet sun;
-        
+
         [SerializeField]
         private GameObject planetPrototype;
-        
+
         [SerializeField]
         private int numPlanets = 5;
-        
+
         [SerializeField]
         private int maxSatellites = 4;
 
@@ -25,7 +24,6 @@ namespace CodingChallenge.SolarSystem
             {
                 planet.SpawnMoons(Random.Range(0, maxSatellites), planetPrototype);
             }
-            
         }
     }
 }

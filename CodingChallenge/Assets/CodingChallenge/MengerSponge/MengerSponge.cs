@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using CodingChallenge.MengerSponge;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace CodingChallenge.MengerSponge

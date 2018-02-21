@@ -17,8 +17,6 @@
  * that this copyright notice remain intact.
  */
 
-using System;
-
 namespace Moments.Encoder
 {
 	public class NeuQuant
