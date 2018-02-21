@@ -23,11 +23,17 @@ namespace CodingChallenge.Maze
 
         [SerializeField]
         private GameObject mazeCellPrefab;
+        
+        [SerializeField]
+        private float delaySec = 0.5f;
 
         private MazeCell[] mazeCells;
         private bool[] visitedCells;
 
         private int currentCellId;
+        private float elapsed;
+        
+        private Stack<int> cellStack = new Stack<int>();
 
         void Start()
         {
@@ -40,7 +46,13 @@ namespace CodingChallenge.Maze
 
         void Update()
         {
-            MoveNextNeighbour();
+            elapsed += Time.deltaTime;
+
+            if (elapsed >= delaySec)
+            {
+                elapsed = 0;
+                MoveNextNeighbour();
+            }
         }
 
         private void MoveNextNeighbour()
@@ -50,7 +62,34 @@ namespace CodingChallenge.Maze
             if (neigbourId != -1)
             {
                 SetVisited(neigbourId);
+                RemoveWall(neigbourId);
+                cellStack.Push(currentCellId);
                 currentCellId = neigbourId;
+            }
+            else if (cellStack.Count > 0)
+            {
+                currentCellId = cellStack.Pop();
+            }
+        }
+
+        private void RemoveWall(int neigbourId)
+        {
+            if (neigbourId == MazeUtil.LeftCellId(currentCellId, rows, cols))
+            {
+                mazeCells[neigbourId].RemoveRightWall();
+                mazeCells[currentCellId].RemoveLeftWall();
+            } else if (neigbourId == MazeUtil.RightCellId(currentCellId, rows, cols))
+            {
+                mazeCells[neigbourId].RemoveLeftWall();
+                mazeCells[currentCellId].RemoveRightWall();
+            } else if (neigbourId == MazeUtil.TopCellId(currentCellId, rows, cols))
+            {
+                mazeCells[neigbourId].RemoveBottomWall();
+                mazeCells[currentCellId].RemoveTopWall();
+            } else 
+            {
+                mazeCells[neigbourId].RemoveTopWall();
+                mazeCells[currentCellId].RemoveBottomWall();
             }
         }
 

@@ -608,6 +608,7 @@ MonoBehaviour:
   yOffset: -0.2
   mazeCellPrefab: {fileID: 1049441980045148, guid: 50a7417be8323904294565c285ea8d55,
     type: 2}
+  delaySec: 0.25
 --- !u!4 &1533124850
 Transform:
   m_ObjectHideFlags: 0

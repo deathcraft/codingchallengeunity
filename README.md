@@ -28,3 +28,8 @@ Simple mitosis simulation.
 ![Solar System](CodingChallenge/Assets/Gifs/GifCapture-201802211211060335.gif)
 
 Random Solar System generator.
+
+# Maze Generator
+![Maze Generator](CodingChallenge/Assets/Gifs/GifCapture-201802212014160630)
+
+Recursive backtracker maze generation algorithm.

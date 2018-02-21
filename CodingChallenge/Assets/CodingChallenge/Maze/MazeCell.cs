@@ -32,6 +32,26 @@ namespace CodingChallenge.Maze
 			SetMaterial(bottomWall, material);
 		}
 
+		public void RemoveLeftWall()
+		{
+			leftWall.SetActive(false);
+		}
+		
+		public void RemoveRightWall()
+		{
+			rightWall.SetActive(false);
+		}
+
+		public void RemoveTopWall()
+		{
+			topWall.SetActive(false);
+		}
+
+		public void RemoveBottomWall()
+		{
+			bottomWall.SetActive(false);
+		}
+
 		private void SetMaterial(GameObject obj, Material material)
 		{
 			var meshRenderer = obj.GetComponent<MeshRenderer>();
