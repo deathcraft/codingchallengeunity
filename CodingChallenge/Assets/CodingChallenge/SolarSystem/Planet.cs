@@ -10,9 +10,6 @@ namespace CodingChallenge.SolarSystem
 		private float planetRadius = 1;
 
 		[SerializeField]
-		private float angle = 0;
-
-		[SerializeField]
 		private float distance = 1f;
 		
 		[SerializeField]
@@ -21,10 +18,16 @@ namespace CodingChallenge.SolarSystem
 		[SerializeField]
 		private Planet[] planets;
 
+		[SerializeField]
+		private LineRenderer lineRenderer;
+
+
+		private Vector3 distanceVector;
+		private Vector3 rotationAxisLocal;
+
 		public Planet[] Planets
 		{
 			get { return planets; }
-			set { planets = value; }
 		}
 
 		void Start()
@@ -36,21 +39,21 @@ namespace CodingChallenge.SolarSystem
 		{
 			planets = new Planet[n];
 
-			float currentDistance = 0;
+			float currentDistance = 0.5f;
 			
 			for (int i = 0; i < planets.Length; i++)
 			{
 				var planetInstance = Instantiate(prefab, transform);
 				var planet = planetInstance.GetComponent<Planet>();
 				planet.planetRadius = planetRadius * Random.Range(0.2f, 0.4f);
-				currentDistance += Random.Range(0.5f, 1.7f);
+				currentDistance += Random.Range(1.5f, 2.7f) / (1  + planetRadius);
 				planet.distance = currentDistance;
 
-				float angle = Random.Range(0, Mathf.PI * 2);
-				planet.angle = angle;
 				planet.SetPositionFromAngle();
-
-				planet.orbitSpeed = Random.Range(-1f, 1f);
+				planet.rotationAxisLocal = Vector3.Cross(planet.transform.localPosition, Random.insideUnitSphere);
+				Debug.Log("rotationAxisLocal: " + planet.rotationAxisLocal + " transform.localPosition: " + planet.transform.localPosition);
+				
+				planet.orbitSpeed = Random.Range(-360f, 360f);
 				
 				planets[i] = planet;
 
@@ -58,12 +61,11 @@ namespace CodingChallenge.SolarSystem
 			}
 		}
 
-		public void SetPositionFromAngle()
+		private void SetPositionFromAngle()
 		{
-			Vector3 localPoistion = Vector3.zero;
-			localPoistion.x = distance * Mathf.Cos(angle);
-			localPoistion.y = distance * Mathf.Sin(angle);
-			transform.localPosition = localPoistion;
+			distanceVector = Random.insideUnitSphere * distance;
+			transform.localPosition = distanceVector;
+			Debug.Log("distanceVector: " +distanceVector);
 		}
 
 		private void RandomMaterialColor(Planet planet)
@@ -77,8 +79,15 @@ namespace CodingChallenge.SolarSystem
 
 		void Update()
 		{
-			angle += (orbitSpeed * Time.deltaTime) % (Mathf.PI * 2);
-			SetPositionFromAngle();
+			if (transform.parent != null)
+			{
+				Vector3 worldRotationAxis = transform.parent.TransformDirection(rotationAxisLocal);
+				
+				transform.RotateAround(transform.parent.position, worldRotationAxis, orbitSpeed * Time.deltaTime);
+
+				lineRenderer.SetPosition(0, transform.parent.position);
+				lineRenderer.SetPosition(1, worldRotationAxis * 100);
+			}
 		}
 	}
 }

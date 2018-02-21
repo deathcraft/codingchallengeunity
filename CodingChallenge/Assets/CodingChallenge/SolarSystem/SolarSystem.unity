@@ -1124,6 +1124,8 @@ MonoBehaviour:
   sun: {fileID: 1080923495}
   planetPrototype: {fileID: 1346597390106766, guid: 59d6567cb5953cf4982708cf012f9c02,
     type: 2}
+  numPlanets: 5
+  maxSatellites: 4
 --- !u!4 &2025049578
 Transform:
   m_ObjectHideFlags: 0
