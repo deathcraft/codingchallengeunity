@@ -1175,7 +1175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxPrefab: {fileID: 1972336567891280, guid: 98374dd46c76bd542b2d787f5e875997, type: 2}
   boxRadius: 2
-  offset: 0.02
+  offset: 0.01
 --- !u!114 &1958576578
 MonoBehaviour:
   m_ObjectHideFlags: 0
