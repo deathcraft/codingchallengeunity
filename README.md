@@ -38,3 +38,8 @@ Recursive backtracker maze generation algorithm.
 ![Terrain Generator](CodingChallenge/Assets/Gifs/GifCapture-201802221515335597.gif)
 
 Procedural terrain generation with Perlin Noise
+
+# Lorenz Attractor
+![Terrain Generator](CodingChallenge/Assets/Gifs/GifCapture-201802221550409821.gif)
+
+Lorenz attractor with trail renderer
