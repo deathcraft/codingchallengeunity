@@ -35,6 +35,6 @@ Random Solar System generator.
 Recursive backtracker maze generation algorithm.
 
 # Terrain Generator
-![Terrain Generator](CodingChallenge/Assets/Gifs/GifCapture-201802221513039045.gif)
+![Terrain Generator](CodingChallenge/Assets/Gifs/GifCapture-201802221515335597.gif)
 
 Procedural terrain generation with Perlin Noise
