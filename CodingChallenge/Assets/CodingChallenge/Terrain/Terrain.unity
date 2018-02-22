@@ -357,6 +357,63 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &887334341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 887334344}
+  - component: {fileID: 887334343}
+  - component: {fileID: 887334342}
+  m_Layer: 0
+  m_Name: SinTerrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &887334342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 887334341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba940640aba470a9052b9dd911bcf64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainGenerator: {fileID: 887334343}
+--- !u!114 &887334343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 887334341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3fb62014aaa6464a8610ca5e7548ab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cols: 90
+  rows: 90
+  triangleSize: 1.5
+  meshMaterial: {fileID: 2100000, guid: 9a98196ec0050e54a8995a2b34e348f4, type: 2}
+--- !u!4 &887334344
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 887334341}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!1 &912672075
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,12 +544,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd5378998db5ba9488d08a4e3b80821a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Width: 640
-  m_Height: 360
+  m_Width: 320
+  m_Height: 180
   m_AutoAspect: 1
-  m_FramePerSecond: 20
+  m_FramePerSecond: 15
   m_Repeat: 0
-  m_Quality: 20
+  m_Quality: 15
   m_BufferSize: 15
   WorkerPriority: 2
 --- !u!114 &912672083
@@ -1150,6 +1207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2117482535}
   - component: {fileID: 2117482534}
+  - component: {fileID: 2117482536}
   m_Layer: 0
   m_Name: PerlinTerrain
   m_TagString: Untagged
@@ -1168,8 +1226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3fb62014aaa6464a8610ca5e7548ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cols: 90
-  rows: 90
+  cols: 1200
+  rows: 1200
   triangleSize: 1.5
   meshMaterial: {fileID: 2100000, guid: 9a98196ec0050e54a8995a2b34e348f4, type: 2}
 --- !u!4 &2117482535
@@ -1185,3 +1243,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+--- !u!114 &2117482536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2117482533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af1f23f7582343509aca5cd8bf62de04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainGenerator: {fileID: 2117482534}
+  minZ: -0.5
+  maxZ: 0.5

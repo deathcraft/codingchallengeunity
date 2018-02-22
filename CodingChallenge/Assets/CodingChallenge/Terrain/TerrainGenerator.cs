@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CodingChallenge.Terrain
 {
-    public class PerlinTerrain : MonoBehaviour
+    public class TerrainGenerator : MonoBehaviour
     {
         [SerializeField]
         private int cols;
@@ -19,11 +20,26 @@ namespace CodingChallenge.Terrain
 
         private Mesh mesh;
 
+        public Mesh Mesh
+        {
+            get { return mesh; }
+        }
+
+        public int Cols
+        {
+            get { return cols; }
+        }
+
+        public int Rows
+        {
+            get { return rows; }
+        }
+
         private List<Vector3> vertices = new List<Vector3>();
         private List<Vector2> uvs = new List<Vector2>();
         private List<int> triangles = new List<int>();
 
-        void Start()
+        void Awake()
         {
             CreateMesh();
             CreateTerrain();
@@ -93,15 +109,6 @@ namespace CodingChallenge.Terrain
             mesh.triangles = triangles.ToArray();
         }
 
-        void Update()
-        {
-            var meshVertices = mesh.vertices;
-            for (int i = 0; i < meshVertices.Length; i++)
-            {
-                meshVertices[i].z = Random.Range(-0.3f, 0.3f);
-            }
-
-            mesh.vertices = meshVertices;
-        }
+     
     }
 }

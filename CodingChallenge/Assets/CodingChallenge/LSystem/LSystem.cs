@@ -146,7 +146,7 @@ namespace CodingChallenge.LSystem
 
         private void CreateLine()
         {
-            Vector3 rotatedEnd = VectorUtil.RotateVector(Vector3.up, currentPosition.Angle) * lenghtCoeff;
+            Vector3 rotatedEnd = MathUtil.RotateVector(Vector3.up, currentPosition.Angle) * lenghtCoeff;
             Vector3 newEndPosition = rotatedEnd + currentPosition.EndPosition;
 
             DrawLine(currentPosition.EndPosition, newEndPosition);

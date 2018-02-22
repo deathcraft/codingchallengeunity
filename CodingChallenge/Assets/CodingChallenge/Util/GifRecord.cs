@@ -5,7 +5,6 @@ namespace CodingChallenge
 {
     public class GifRecord : MonoBehaviour
     {
-        private bool saved;
         private bool started;
 
         public void StartRecordOnce()
@@ -24,13 +23,9 @@ namespace CodingChallenge
 
         public void StopRecord()
         {
-            if (!saved)
-            {
-                FindObjectOfType<Recorder>().Save();
-                saved = true;
-                Debug.Log("End record");
-                started = false;
-            }
+            FindObjectOfType<Recorder>().Save();
+            Debug.Log("End record");
+            started = false;
         }
     }
 }

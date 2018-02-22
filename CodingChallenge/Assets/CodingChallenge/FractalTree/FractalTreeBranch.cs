@@ -34,7 +34,7 @@ namespace CodingChallenge.FractalTree
         {
             Vector3 direction = abstractLine.LineEnd - abstractLine.LineStart;
             int coeff = leftTurn ? -1 : 1;
-            Vector3 rotatedDirection = VectorUtil.RotateVector(direction, coeff * root.Angle) * root.InitialBranchLength;
+            Vector3 rotatedDirection = MathUtil.RotateVector(direction, coeff * root.Angle) * root.InitialBranchLength;
             return rotatedDirection + abstractLine.LineEnd;
         }
 

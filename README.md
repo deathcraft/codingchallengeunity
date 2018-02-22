@@ -30,6 +30,11 @@ Simple mitosis simulation.
 Random Solar System generator.
 
 # Maze Generator
-![Maze Generator](CodingChallenge/Assets/Gifs/GifCapture-201802212014160630)
+![Maze Generator](CodingChallenge/Assets/Gifs/GifCapture-201802212014160630.gif)
 
 Recursive backtracker maze generation algorithm.
+
+# Terrain Generator
+![Terrain Generator](CodingChallenge/Assets/Gifs/GifCapture-201802221513039045.gif)
+
+Procedural terrain generation with Perlin Noise
