@@ -40,9 +40,7 @@ namespace CodingChallenge.Terrain
         {
             var start = Random.insideUnitSphere * 5;
             var end = start + Random.insideUnitSphere / 10;
-            start.z = 0;
-            
-            end.z = 0;
+          
 
             volumetricLine.StartPos = start;
             volumetricLine.EndPos = end;

@@ -143,7 +143,7 @@ namespace CodingChallenge.Terrain
 
 		private FractalSpaceBranch CreateBranch(FractalSpaceBranch parent, Vector3 direction, Vector3 startPosition)
 		{
-			var branch = Instantiate(branchPrefab);
+			var branch = Instantiate(branchPrefab, transform);
 			var fractalSpaceBranch = branch.GetComponent<FractalSpaceBranch>();
 			fractalSpaceBranch.parent = parent;
 			fractalSpaceBranch.direction = direction;
