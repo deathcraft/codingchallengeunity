@@ -40,6 +40,7 @@ namespace CodingChallenge.Terrain
 		
 		void Start()
 		{
+			FindObjectOfType<GifRecord>().StartRecordOnce();
 			GenerateLeaves();
 			CreateRoot();
 			GenerateBranches();
@@ -91,7 +92,9 @@ namespace CodingChallenge.Terrain
 			
 			foreach (var branch in branchedBranches)
 			{
-				var direction = branch.direction * growCoeff/*/ branch.CurrentCount()*/;
+				var direction = branch.direction * branch.CurrentCount() ;
+				direction += Random.insideUnitSphere * 0.5f;
+				direction = direction.normalized* growCoeff;
 				CreateBranch(branch, direction, branch.EndPosition);
 				branch.ResetBranch();
 			}
@@ -126,12 +129,8 @@ namespace CodingChallenge.Terrain
 
 				if (closestBranch != null)
 				{
-					if (closestBranch.CurrentCount() == 0)
-					{
-						closestBranch.direction += (leaf.LeafPosition - closestBranch.EndPosition).normalized;
-						closestBranch.Increment();	
-					}
-					
+					closestBranch.direction += (leaf.LeafPosition - closestBranch.EndPosition).normalized;
+					closestBranch.Increment();	
 				}
 			}
 		}
@@ -149,6 +148,7 @@ namespace CodingChallenge.Terrain
 			fractalSpaceBranch.direction = direction;
 			fractalSpaceBranch.startPosition = startPosition;
 			fractalSpaceBranch.Init();
+			
 			branches.Add(fractalSpaceBranch);
 			return fractalSpaceBranch;
 		}

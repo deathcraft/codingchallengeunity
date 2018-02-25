@@ -38,7 +38,7 @@ namespace CodingChallenge.Terrain
         
         public void RandomPos()
         {
-            var start = Random.insideUnitSphere * 5;
+            var start = Random.insideUnitSphere * 10;
             var end = start + Random.insideUnitSphere / 10;
           
 

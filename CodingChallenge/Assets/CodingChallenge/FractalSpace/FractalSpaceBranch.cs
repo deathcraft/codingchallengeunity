@@ -13,6 +13,9 @@ namespace CodingChallenge.Terrain
         
         public Vector3 startPosition;
 
+        public float sizeCoeff;
+        public float colorCoeff;
+
         public Vector3 EndPosition
         {
             get { return volumetricLine.EndPos;  }
@@ -31,17 +34,26 @@ namespace CodingChallenge.Terrain
             return count;
         }
 
-        public void ResetBranch()
-        {
-            count = 0;
-            direction = originalDirection;
-        }
-        
         public void Init()
         {
             originalDirection = direction;
             volumetricLine.StartPos = startPosition;
             volumetricLine.EndPos = parent != null ? parent.EndPosition + direction : startPosition + direction;
+
+            if (parent != null)
+            {
+                volumetricLine.LineWidth = parent.volumetricLine.LineWidth * sizeCoeff;
+                var volumetricLineLineColor = parent.volumetricLine.LineColor;
+                volumetricLineLineColor.r -= colorCoeff;
+                volumetricLineLineColor.b += colorCoeff;
+                volumetricLine.LineColor = volumetricLineLineColor;
+            }
+        }
+
+        public void ResetBranch()
+        {
+            count = 0;
+            direction = originalDirection;
         }
     }
 }

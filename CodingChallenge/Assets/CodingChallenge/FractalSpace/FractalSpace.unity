@@ -690,7 +690,7 @@ MonoBehaviour:
   leafPrefab: {fileID: 1376736792601692, guid: 2e2ec7dedf274804c9d7a24a5df6e4e8, type: 2}
   branchPrefab: {fileID: 1590587278584764, guid: cbe7e593b91a1034f989b041ae7b3af5,
     type: 2}
-  leafNumber: 200
+  leafNumber: 500
   speed: 0.01
   growCoeff: 0.25
   rootPosition: {fileID: 470052963}

@@ -100,6 +100,8 @@ MonoBehaviour:
   volumetricLine: {fileID: 114741342713070748}
   direction: {x: 0, y: 0, z: 0}
   startPosition: {x: 0, y: 0, z: 0}
+  sizeCoeff: 0.95
+  colorCoeff: 0.05
 --- !u!114 &114741342713070748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -115,6 +117,6 @@ MonoBehaviour:
   m_doNotOverwriteTemplateMaterialProperties: 0
   m_startPos: {x: 0, y: 0, z: 0}
   m_endPos: {x: 0, y: 1, z: 0}
-  m_lineColor: {r: 1, g: 0.5518868, b: 0.5518868, a: 0.67058825}
-  m_lineWidth: 0.6
+  m_lineColor: {r: 1, g: 0, b: 0.003921569, a: 1}
+  m_lineWidth: 2
   m_lightSaberFactor: 0.9
