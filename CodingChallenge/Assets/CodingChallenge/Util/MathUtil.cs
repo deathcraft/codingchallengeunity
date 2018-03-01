@@ -20,5 +20,13 @@ namespace CodingChallenge
         {
             return min2 + (val - min1) * (max2 - min2) / (max1 - min1);
         }
+
+        public static Color ColorLerp(Color c1, Color c2, float val)
+        {
+            float r = Mathf.Lerp(c1.r, c2.r, val);
+            float g = Mathf.Lerp(c1.g, c2.g, val);
+            float b = Mathf.Lerp(c1.b, c2.b, val);
+            return new Color(r,g,b);
+        }
     }
 }

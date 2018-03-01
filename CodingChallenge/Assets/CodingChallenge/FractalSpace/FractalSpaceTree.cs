@@ -40,7 +40,6 @@ namespace CodingChallenge.Terrain
 		
 		void Start()
 		{
-			FindObjectOfType<GifRecord>().StartRecordOnce();
 			GenerateLeaves();
 			CreateRoot();
 			GenerateBranches();
