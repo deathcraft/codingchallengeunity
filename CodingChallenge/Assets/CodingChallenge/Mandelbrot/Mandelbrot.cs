@@ -19,7 +19,7 @@ public class Mandelbrot : MonoBehaviour
     private float height;
 
     [SerializeField]
-    private Color[] palette = new[] {Color.black, Color.blue, Color.green, Color.red, Color.yellow, Color.black};
+    private Color[] palette = {Color.black, Color.blue, Color.green, Color.red, Color.yellow, Color.black};
 
     private Texture2D texture;
 
@@ -48,7 +48,6 @@ public class Mandelbrot : MonoBehaviour
                 float cb = b;
 
                 int n = 0;
-                int z = 0;
 
                 while (n < iterations)
                 {
@@ -71,13 +70,6 @@ public class Mandelbrot : MonoBehaviour
                 int id = (int) MathUtil.Map(n, 0, iterations, 0, palette.Length - 2);
                 Color color = palette[id];
                 Color color2 = palette[id + 1];
-
-//                float brightness = MathUtil.Map(n, 0, iterations, 0, 1);
-//                brightness = MathUtil.Map(Mathf.Sqrt(brightness), 0, 1, 0, 1);
-//                if (n == iterations)
-//                {
-//                    brightness = 0;
-//                }
                 color = MathUtil.ColorLerp(color, color2, iterations % 1);
                 texture.SetPixel(i, j, color);
             }
@@ -86,21 +78,4 @@ public class Mandelbrot : MonoBehaviour
         texture.Apply();
     }
 
-
-    private void FillWithRandomPixels()
-    {
-        for (int i = 0; i < textureDim; i++)
-        {
-            for (int j = 0; j < textureDim; j++)
-            {
-                texture.SetPixel(i, j, Random.ColorHSV());
-            }
-        }
-
-        texture.Apply();
-    }
-
-    void Update()
-    {
-    }
 }
