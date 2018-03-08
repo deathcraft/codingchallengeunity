@@ -11,15 +11,18 @@ namespace CodingChallenge.PerlinFlow
         protected int textureDim = 1024;
         
         protected Texture2D texture;
-        
+
+        protected Color[] colors;
         
         protected void InitTexture()
         {
+            colors = new Color[textureDim * textureDim];
             texture = new Texture2D(textureDim, textureDim, TextureFormat.ARGB32, false);
         }
 
         protected void ApplyTexture()
         {
+            texture.SetPixels(colors);
             texture.Apply();
             objectRenderer.material.mainTexture = texture;
         }

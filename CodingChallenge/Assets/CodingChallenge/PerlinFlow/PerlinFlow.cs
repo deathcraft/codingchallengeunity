@@ -22,15 +22,16 @@ public class PerlinFlow : TextureGenerator
     protected override void GenerateTexture()
     {
         float yOffset = 0;
+        float xOffsetStart = 0;
         for (int i = 0; i < textureDim; i++)
         {
-            float xOffset = 0;
+            float xOffset = xOffsetStart;
 
             for (int j = 0; j < textureDim; j++)
             {
                 var r = Mathf.PerlinNoise(xOffset, yOffset);
                 Color color = new Color(r,r,r);
-                texture.SetPixel(i, j, color);
+                colors[i * textureDim + j] = color;
                 xOffset += perlinStep;
             }
             
