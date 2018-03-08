@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 717087748}
   - component: {fileID: 717087747}
   m_Layer: 0
-  m_Name: JuliaSet
+  m_Name: Flow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -532,28 +532,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 717087746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a8fc1bac9c246a3b1ed253c6bf8b426, type: 3}
+  m_Script: {fileID: 11500000, guid: 3473c939ea2b1234e9b6752b4817cd26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectRenderer: {fileID: 596023729}
-  textureDim: 256
-  iterations: 100
-  width: -1
-  height: 1
-  cReal: 1
-  cImagine: 1
-  angleSpeed: 1
-  cRealMin: -0.71
-  cRealMax: -0.73
-  cImagineMin: 0.17
-  cImagineMax: 0.19
-  palette:
-  - {r: 0, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0, b: 1, a: 1}
-  - {r: 0, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  - {r: 0, g: 0, b: 0, a: 1}
+  textureDim: 512
+  onUpdate: 1
+  perlinStep: 0.01
 --- !u!4 &717087748
 Transform:
   m_ObjectHideFlags: 0

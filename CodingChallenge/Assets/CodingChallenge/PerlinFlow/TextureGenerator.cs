@@ -9,6 +9,9 @@ namespace CodingChallenge.PerlinFlow
         
         [SerializeField]
         protected int textureDim = 1024;
+
+        [SerializeField]
+        protected bool onUpdate;
         
         protected Texture2D texture;
 
@@ -30,6 +33,17 @@ namespace CodingChallenge.PerlinFlow
         protected virtual void GenerateTexture()
         {
            
+        }
+
+        void Update()
+        {
+            if (!onUpdate)
+            {
+                return;
+            }
+            
+            GenerateTexture();
+            ApplyTexture();
         }
     }
 }

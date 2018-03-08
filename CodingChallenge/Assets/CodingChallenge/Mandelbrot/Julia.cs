@@ -1,15 +1,10 @@
-﻿using UnityEngine;
+﻿using CodingChallenge.PerlinFlow;
+using UnityEngine;
 
 namespace CodingChallenge.Mandelbrot
 {
-    public class Julia : MonoBehaviour
+    public class Julia : TextureGenerator
     {
-        [SerializeField]
-        private MeshRenderer objectRenderer;
-
-        [SerializeField]
-        private int textureDim = 1024;
-
         [SerializeField]
         private int iterations = 100;
 
@@ -49,10 +44,10 @@ namespace CodingChallenge.Mandelbrot
 
         void Start()
         {
-            GenerateTexture();
+            InitTexture();
         }
 
-        void Update()
+        protected override void GenerateTexture()
         {
             angle += angleSpeed * Time.deltaTime;
             float ca = Mathf.Cos(angle);
@@ -60,15 +55,7 @@ namespace CodingChallenge.Mandelbrot
             
             cReal = MathUtil.Map(ca, -1, 1, cRealMin, cRealMax);
             cImagine = MathUtil.Map(cb, -1, 1, cImagineMin, cImagineMax);
-            
-            GenerateTexture();
-        }
-
-        private void GenerateTexture()
-        {
-            texture = new Texture2D(textureDim, textureDim, TextureFormat.ARGB32, false);
             GenerateJulia();
-            objectRenderer.material.mainTexture = texture;
         }
 
         private void GenerateJulia()
@@ -110,7 +97,7 @@ namespace CodingChallenge.Mandelbrot
                     Color color = palette[id];
                     Color color2 = palette[id + 1];
                     color = MathUtil.ColorLerp(color, color2, iterations % 1);
-                    texture.SetPixel(i, j, color);
+                    colors[i * textureDim + j] = color;
                     y += dy;
 
                 }
@@ -118,8 +105,6 @@ namespace CodingChallenge.Mandelbrot
 
 
             }
-
-            texture.Apply();
         }
     }
 }
