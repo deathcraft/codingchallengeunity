@@ -41,7 +41,7 @@ namespace CodingChallenge.PerlinFlow
             {
                 return;
             }
-            
+            colors = new Color[textureDim * textureDim];
             GenerateTexture();
             ApplyTexture();
         }
