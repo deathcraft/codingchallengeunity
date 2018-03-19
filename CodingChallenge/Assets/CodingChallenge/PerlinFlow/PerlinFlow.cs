@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using CodingChallenge;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
@@ -15,7 +17,13 @@ public class PerlinFlow : MonoBehaviour
     private int cellSize;
 
     [SerializeField]
-    private int interval = 1;
+    private int velMultiplier = 1;
+
+    [SerializeField]
+    private int particleNum = 2000;
+
+    [SerializeField]
+    private Gradient gradient;
 
     [SerializeField]
     public ParticleSystem particleSystem;
@@ -27,12 +35,18 @@ public class PerlinFlow : MonoBehaviour
     private Vector3[,] vecArray;
     private ParticleSystem.Particle[] particles;
 
+    private float startXOffset;
+    private float startYOffset;
+
+    private float zOffset;
+
     void Start()
     {
         cols = Screen.width / cellSize;
         rows = Screen.height / cellSize;
-        Debug.Log("cols: " + (cols));
-        Debug.Log("rows: " + (rows));
+
+        startXOffset = Random.value;
+        startYOffset = Random.value;
 
         colArray = new Color[rows, cols];
         vecArray = new Vector3[rows, cols];
@@ -41,7 +55,7 @@ public class PerlinFlow : MonoBehaviour
 
         GenerateVectorField();
 
-        particleSystem.Emit(1050);
+        particleSystem.Emit(particleNum);
 
         GenerateParticles();
     }
@@ -49,6 +63,7 @@ public class PerlinFlow : MonoBehaviour
     void Update()
     {
         UpdateParticles();
+        UpdateVectors();
     }
 
     private void UpdateParticles()
@@ -58,41 +73,90 @@ public class PerlinFlow : MonoBehaviour
         for (int i = 0; i < numAlive; i++)
         {
             ParticleSystem.Particle particle = particles[i];
-            particle = PositionParticle(particle);
             particle.color = ColorFromPerlinVals(particle);
-//            particle.velocity = VelFromPerlinVals(particle);
+            particle.velocity = VelFromPerlinVals(particle) * velMultiplier;
+            particle = PositionParticle(particle);
             particles[i] = particle;
-
-//            particle.velocity = Random.insideUnitSphere;
         }
 
         particleSystem.SetParticles(particles, numAlive);
     }
 
-    
-
-    private void GenerateVectorField()
+    private void ShiftStartOffsets()
     {
-        UnityEngine.Random.InitState(1);
+        startXOffset += perlinStep;
+        startYOffset += perlinStep;
+    }
 
-        float xOffset = 0;
+    private void UpdateVectors()
+    {
+        float xOffset = startXOffset;
 
         for (int i = 0; i < rows; i++)
         {
-            float yOffset = 0;
+            float yOffset = startYOffset;
 
             for (int j = 0; j < cols; j++)
             {
-                var r = Perlin.Noise(xOffset, yOffset);
-                Color color = new Color(r, r, r);
-                colArray[i, j] = color;
-                vecArray[i, j] = new Vector3(r, r, 0);
+                var noise = Noise(xOffset, yOffset, zOffset);
+                FillVector(noise, i, j);
+                yOffset += perlinStep;
+            }
+
+            xOffset += perlinStep;
+        }
+
+        zOffset += perlinStep;
+    }
+
+
+    private void GenerateVectorField()
+    {
+        float xOffset = startXOffset;
+
+        for (int i = 0; i < rows; i++)
+        {
+            float yOffset = startYOffset;
+
+            for (int j = 0; j < cols; j++)
+            {
+                var noise = Noise(xOffset, yOffset, 0);
+
+                FillColor(noise, i, j);
+                FillVector(noise, i, j);
 
                 yOffset += perlinStep;
             }
 
             xOffset += perlinStep;
         }
+    }
+
+    private float Noise(float x, float y, float z)
+    {
+        var keijiroNoise = Perlin.Noise(x, y, z);
+        keijiroNoise = MathUtil.Map(keijiroNoise, -1, 1, 0, 1);
+        return keijiroNoise;
+        return Mathf.PerlinNoise(x, y);
+    }
+
+    private void FillVector(float noise, int i, int j)
+    {
+        float angle = noise * 360;
+        Vector3 vec = Quaternion.Euler(0, 0, angle) * Vector3.up;
+        vecArray[i, j] = vec;
+    }
+
+    private void FillVectorStaright(float noise, int i, int j)
+    {
+        vecArray[i, j] = new Vector3(noise, noise, 0);
+    }
+
+
+    private void FillColor(float noise, int i, int j)
+    {
+        var color = gradient.Evaluate(noise);
+        colArray[i, j] = color;
     }
 
     private void GenerateParticles()
@@ -103,8 +167,6 @@ public class PerlinFlow : MonoBehaviour
         {
             ParticleSystem.Particle particle = particles[i];
             particle.position = RandomScreenPoistion();
-//                        particle.velocity = VelFromPerlinVals(particle);
-
             particles[i] = particle;
         }
 
@@ -114,22 +176,18 @@ public class PerlinFlow : MonoBehaviour
     private Color32 ColorFromPerlinVals(ParticleSystem.Particle particle)
     {
         var particlePosition = ScreenPos(particle.position);
-        int i = (int) (particlePosition.x * Screen.height / cellSize);
-        int j = (int) (particlePosition.y * Screen.width / cellSize);
-        i = Mathf.Clamp(i, 0, rows - 1);
-        j = Mathf.Clamp(j, 0, cols - 1);
-        
+        int i = (int) (particlePosition.y * (Screen.height - rows) / cellSize);
+        int j = (int) (particlePosition.x * (Screen.width - cols) / cellSize);
+
         var color = colArray[i, j];
         return new Color32((byte) (color.r * 255), (byte) (color.g * 255), (byte) (color.b * 255), 255);
     }
-    
+
     private Vector3 VelFromPerlinVals(ParticleSystem.Particle particle)
     {
         var particlePosition = ScreenPos(particle.position);
-        int i = (int) (particlePosition.x * Screen.height / cellSize);
-        int j = (int) (particlePosition.y * Screen.width / cellSize);
-        i = Mathf.Clamp(i, 0, rows - 1);
-        j = Mathf.Clamp(j, 0, cols - 1);
+        int i = (int) (particlePosition.y * (Screen.height - rows) / cellSize);
+        int j = (int) (particlePosition.x * (Screen.width - cols) / cellSize);
         return vecArray[i, j];
     }
 
@@ -162,9 +220,21 @@ public class PerlinFlow : MonoBehaviour
         return particle;
     }
 
+
     private Vector3 ScreenPos(Vector3 worldPos)
     {
-        return cam.WorldToViewportPoint(worldPos);
+        var worldToViewportPoint = cam.WorldToViewportPoint(worldPos);
+        if (worldToViewportPoint.x < 0)
+        {
+            worldToViewportPoint.x = 0;
+        }
+
+        if (worldToViewportPoint.y < 0)
+        {
+            worldToViewportPoint.y = 0;
+        }
+
+        return worldToViewportPoint;
     }
 
     private Vector3 RandomScreenPoistion()
