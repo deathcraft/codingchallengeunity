@@ -24,7 +24,7 @@ public class LorenzAttractor : MonoBehaviour
     private float beta;
 
     [SerializeField]
-    private GameObject trailRenderer;
+    private GameObject target;
 
     void Update()
     {
@@ -36,6 +36,6 @@ public class LorenzAttractor : MonoBehaviour
         y = y + dy * 0.01f;
         z = z + dz * 0.01f;
 
-        trailRenderer.transform.position = new Vector3(x, y, z);
+        target.transform.position = new Vector3(x, y, z);
     }
 }

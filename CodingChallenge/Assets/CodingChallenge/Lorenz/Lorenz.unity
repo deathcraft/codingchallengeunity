@@ -227,7 +227,7 @@ MonoBehaviour:
   sigma: 10
   rou: 28
   beta: 2.6666667
-  trailRenderer: {fileID: 493081853}
+  target: {fileID: 493081853}
 --- !u!1 &245728482
 GameObject:
   m_ObjectHideFlags: 0

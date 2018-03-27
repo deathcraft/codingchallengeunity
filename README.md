@@ -4,11 +4,6 @@ Coding Train implementations on Unity3d
 The playlist with videos of Coding Train:
 https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw
 
-# Fractal Tree
-![Fractal Tree](CodingChallenge/Assets/Gifs/GifCapture-201802211724074476.gif)
-
-Simplest fractal tree with dynamic angle configuration.
-
 # L-System
 ![L-System](CodingChallenge/Assets/Gifs/GifCapture-201802211726347412.gif)
 
@@ -18,11 +13,6 @@ L-System implementation with different rules (Tree, Koch, Serpinsky, Serpinsky A
 ![Menger Sponge](CodingChallenge/Assets/Gifs/GifCapture-201802211729224477.gif)
 
 Menger Sponge implementation with cool rotation and stuff.
-
-# Mitosis
-![Mitosis](CodingChallenge/Assets/Gifs/GifCapture-201802211731097590.gif)
-
-Simple mitosis simulation. 
 
 # Solar System
 ![Solar System](CodingChallenge/Assets/Gifs/GifCapture-201802211211060335.gif)
@@ -53,3 +43,9 @@ Lorenz attractor with trail renderer
 ![Perlin](CodingChallenge/Assets/Gifs/perlin.gif)
 
 Partlicle flow field with perlin noise vector (using Keijiro noise implementation)
+
+
+Also:
+* Fractal tree
+* Mytosis
+* Metaballs

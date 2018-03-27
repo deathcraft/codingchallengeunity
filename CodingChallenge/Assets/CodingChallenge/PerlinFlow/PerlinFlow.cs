@@ -175,7 +175,7 @@ public class PerlinFlow : MonoBehaviour
 
     private Color32 ColorFromPerlinVals(ParticleSystem.Particle particle)
     {
-        var particlePosition = ScreenPos(particle.position);
+        var particlePosition = MathUtil.WorldToScreenPos(particle.position, cam);
         int i = (int) (particlePosition.y * (Screen.height - rows) / cellSize);
         int j = (int) (particlePosition.x * (Screen.width - cols) / cellSize);
 
@@ -185,7 +185,7 @@ public class PerlinFlow : MonoBehaviour
 
     private Vector3 VelFromPerlinVals(ParticleSystem.Particle particle)
     {
-        var particlePosition = ScreenPos(particle.position);
+        var particlePosition = MathUtil.WorldToScreenPos(particle.position, cam);
         int i = (int) (particlePosition.y * (Screen.height - rows) / cellSize);
         int j = (int) (particlePosition.x * (Screen.width - cols) / cellSize);
         return vecArray[i, j];
@@ -221,21 +221,7 @@ public class PerlinFlow : MonoBehaviour
     }
 
 
-    private Vector3 ScreenPos(Vector3 worldPos)
-    {
-        var worldToViewportPoint = cam.WorldToViewportPoint(worldPos);
-        if (worldToViewportPoint.x < 0)
-        {
-            worldToViewportPoint.x = 0;
-        }
-
-        if (worldToViewportPoint.y < 0)
-        {
-            worldToViewportPoint.y = 0;
-        }
-
-        return worldToViewportPoint;
-    }
+    
 
     private Vector3 RandomScreenPoistion()
     {

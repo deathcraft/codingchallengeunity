@@ -28,5 +28,55 @@ namespace CodingChallenge
             float b = Mathf.Lerp(c1.b, c2.b, val);
             return new Color(r,g,b);
         }
+
+        public static Vector3 PositionFromScreenPixel(float x, float y, Camera cam)
+        {
+            Vector3 screenPos = new Vector3(x, y, -cam.transform.position.z);
+            Vector3 worldPoint = cam.ScreenToWorldPoint(screenPos);
+            return worldPoint;
+        }
+        
+        public static Vector3 WorldToScreenPos(Vector3 worldPos, Camera cam)
+        {
+            var worldToViewportPoint = cam.WorldToViewportPoint(worldPos);
+            if (worldToViewportPoint.x < 0)
+            {
+                worldToViewportPoint.x = 0;
+            }
+
+            if (worldToViewportPoint.y < 0)
+            {
+                worldToViewportPoint.y = 0;
+            }
+
+            return worldToViewportPoint;
+        }
+        
+         
+        public static Vector3 BoundPositionByCamera(Vector3 pos)
+        {
+            var mainCamera = Camera.main;
+
+            Vector3 viewportPoint = mainCamera.WorldToViewportPoint(pos);
+
+            if (viewportPoint.x < 0)
+            {
+                viewportPoint.x = 1;
+            }
+            else if (viewportPoint.x > 1)
+            {
+                viewportPoint.x = 0;
+            }
+            else if (viewportPoint.y < 0)
+            {
+                viewportPoint.y = 1;
+            }
+            else if (viewportPoint.y > 1)
+            {
+                viewportPoint.y = 0;
+            }
+
+           return mainCamera.ViewportToWorldPoint(viewportPoint);
+        }
     }
 }
