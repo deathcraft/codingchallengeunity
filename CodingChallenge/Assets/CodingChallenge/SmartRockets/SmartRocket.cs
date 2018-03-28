@@ -25,6 +25,15 @@ public class SmartRocket : MonoBehaviour
         previousPosition = currentPosition;
     }
 
+    void Update()
+    {
+        float dist = Vector3.Distance(transform.position, target.transform.position);
+        if (dist < 0.5f)
+        {
+            rigidbody.velocity = Vector3.zero;
+        }    
+     }
+
     public void Tick(int tick)
     {
         rigidbody.velocity = dna.CurrentForce(tick);

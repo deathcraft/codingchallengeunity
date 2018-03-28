@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114374678275902640}
   - component: {fileID: 50780869369613414}
   - component: {fileID: 61731360327797468}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: SmartRocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4260228719230192}
   - component: {fileID: 33767017345374860}
   - component: {fileID: 23230386943120250}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 33423150103235128}
   - component: {fileID: 23058850775211562}
   - component: {fileID: 135223206204229124}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

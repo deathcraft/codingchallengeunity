@@ -7,6 +7,7 @@ public class SmartRocketPopulation : MonoBehaviour
     public GameObject rocketPrefab;
 
     public float lifetimeSec = 20f;
+    public float timeScale = 2;
 
     private List<SmartRocket> rockets = new List<SmartRocket>();
     private List<SmartRocket> matingPool = new List<SmartRocket>();
@@ -14,6 +15,7 @@ public class SmartRocketPopulation : MonoBehaviour
 
     private void Start()
     {
+        lifetimeSec = lifetimeSec * timeScale;
         GeneratePopulation();
     }
 
@@ -23,7 +25,7 @@ public class SmartRocketPopulation : MonoBehaviour
 
         for (int i = 0; i < rocketNum; i++)
         {
-            SmartRocket.DNA dna = new SmartRocket.DNA((int) lifetimeSec);
+            SmartRocket.DNA dna = new SmartRocket.DNA((int) ((int) lifetimeSec));
             InstantiateRocket(dna);
         }
     }
@@ -104,13 +106,11 @@ public class SmartRocketPopulation : MonoBehaviour
 
     void Update()
     {
-        elapsed += Time.deltaTime;
+        elapsed += Time.deltaTime* timeScale;
 
         if (elapsed >= lifetimeSec)
         {
-            Evaluate();
-            Selection();
-            elapsed = 0;
+            NewGeneration();
             return;
         }
         
@@ -118,5 +118,12 @@ public class SmartRocketPopulation : MonoBehaviour
         {
             smartRocket.Tick((int) elapsed);
         }
+    }
+
+    public void NewGeneration()
+    {
+        Evaluate();
+        Selection();
+        elapsed = 0;
     }
 }
